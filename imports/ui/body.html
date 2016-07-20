@@ -1,0 +1,57 @@
+<body>
+  <h1>Simple Updates</h1>
+
+  <h2>Projects</h2>
+    
+    <ul>
+        {{#each projects}}
+        {{> project}}
+        {{/each}}
+    </ul>
+    
+    <h2>Updates</h2>
+    
+        {{#each updates}}
+        {{> update}}
+        {{/each}}
+    
+   <h2>Update project info</h2>
+    
+    <form class = "add_update">
+        
+    <select id = "update_project">
+        {{#each projects}}
+        {{> project_item}}
+        {{/each}}
+    
+    </select>
+    
+    <select id = "update_priority">
+    
+        <option value = "1">High</option>
+        <option value = "2">Medium</option>
+        <option value = "3">Low</option>
+    
+    </select>
+    <textarea id = "update_text"></textarea> 
+        
+        <button class = "new_update">Submit</button>    
+    </form>
+  
+</body>
+
+<template name="project">
+    
+    <li>{{name}}</li>
+    
+</template>
+
+<template name = "project_item">
+    
+    <option value = "{{id}}">{{name}}</option>
+    
+</template>
+
+<template name = "update">
+    <p>Created at: {{createdAt}}, text: {{text}}, {{project_id}}</p>    
+</template>
