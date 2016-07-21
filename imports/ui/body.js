@@ -7,7 +7,12 @@ import './body.html';
 Template.body.helpers({
 projects() {return Projects.find({});},
     
-updates() {return Updates.find({});}
+updates() {return Updates.find({});},
+    
+lastUpdate(project) {//console.log(project.id);
+                     let id = project.id.toString();
+                     //console.log(id);
+                     return Updates.find({project_id: { $eq: id}})}    
 });
 
 Template.body.events({
@@ -27,8 +32,9 @@ Template.body.events({
       priority: priorityList.options[priorityList.selectedIndex].value
   });
     
-    console.log("it works!");
+    //console.log("it works!");
     
     },
 
 });
+

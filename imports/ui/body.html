@@ -4,24 +4,27 @@
   <h2>Projects</h2>
     
     <ul>
-        {{#each projects}}
-        {{> project}}
+        {{#each project in projects}}
+        {{> project_item project = project}}
+        
+            <!--{{#each update in updates}}
+            {{> update_item update = update}}
+            {{/each}}-->
+        
+            {{#each update in (lastUpdate project)}}
+            {{> update_item update = update}}
+            {{/each}}
+        
         {{/each}}
     </ul>
-    
-    <h2>Updates</h2>
-    
-        {{#each updates}}
-        {{> update}}
-        {{/each}}
-    
-   <h2>Update project info</h2>
+        
+   <h2>New update</h2>
     
     <form class = "add_update">
         
     <select id = "update_project">
         {{#each projects}}
-        {{> project_item}}
+        {{> project_option}}
         {{/each}}
     
     </select>
@@ -40,18 +43,18 @@
   
 </body>
 
-<template name="project">
+<template name="project_item">
     
-    <li>{{name}}</li>
-    
+    <li>{{project.id}}, {{project.name}}</li>
+                
 </template>
 
-<template name = "project_item">
+<template name = "project_option">
     
     <option value = "{{id}}">{{name}}</option>
     
 </template>
 
-<template name = "update">
-    <p>Created at: {{createdAt}}, text: {{text}}, {{project_id}}</p>    
+<template name = "update_item">
+    <p>Updated at: {{update.createdAt}}, text: {{update.text}}, {{update.project_id}}</p>    
 </template>
