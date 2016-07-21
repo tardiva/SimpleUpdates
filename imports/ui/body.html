@@ -6,15 +6,9 @@
     <ul>
         {{#each project in projects}}
         {{> project_item project = project}}
-        
-            <!--{{#each update in updates}}
-            {{> update_item update = update}}
-            {{/each}}-->
-        
-            {{#each update in (lastUpdate project)}}
-            {{> update_item update = update}}
-            {{/each}}
-        
+                    
+            {{> update_item (lastUpdate project)}}
+                    
         {{/each}}
     </ul>
         
@@ -56,5 +50,5 @@
 </template>
 
 <template name = "update_item">
-    <p>Updated at: {{update.createdAt}}, text: {{update.text}}, {{update.project_id}}</p>    
+    <p>Updated at: {{createdAt}}, text: {{text}}, {{project_id}}</p>    
 </template>

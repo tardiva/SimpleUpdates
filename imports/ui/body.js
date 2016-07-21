@@ -12,7 +12,7 @@ updates() {return Updates.find({});},
 lastUpdate(project) {//console.log(project.id);
                      let id = project.id.toString();
                      //console.log(id);
-                     return Updates.find({project_id: { $eq: id}})}    
+                     return Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1})}    
 });
 
 Template.body.events({
