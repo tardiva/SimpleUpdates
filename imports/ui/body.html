@@ -1,54 +1,74 @@
 <body>
+<header>
   <h1>Simple Updates</h1>
+</header>
 
-  <h2>Projects</h2>
-    
-    <ul>
+<section class ="projects">
+  
+    <div class="section-header"><h2>Projects</h2></div>
+    <div class ="section-content">
         {{#each project in projects}}
         {{> project_item project = project}}
                     
-            {{> update_item (lastUpdate project)}}
+            <!--{{> update_item (lastUpdate project)}}
+            {{#each update in (lastUpdate project)}}
+            {{> update_item update=update}}
+            {{/each}}-->
                     
         {{/each}}
-    </ul>
-        
-   <h2>New update</h2>
+     </div>
+    
+</section>
+
+<section class ="add_update"> 
+                   
+    <div class="section-header"><h2>New update</h2></div>
     
     <form class = "add_update">
         
     <select id = "update_project">
-        {{#each projects}}
-        {{> project_option}}
+        {{#each project in projects}}
+        {{> project_option project = project}}
         {{/each}}
-    
     </select>
     
     <select id = "update_priority">
-    
         <option value = "1">High</option>
         <option value = "2">Medium</option>
         <option value = "3">Low</option>
-    
     </select>
+
     <textarea id = "update_text"></textarea> 
         
-        <button class = "new_update">Submit</button>    
+    <button class = "new_update">Submit</button> 
+          
     </form>
-  
+
+</section>  
 </body>
 
 <template name="project_item">
-    
-    <li>{{project.id}}, {{project.name}}</li>
-                
-</template>
+        <article>
+<div class="project">
+        <div class="update_priority"><div class ="circle"></div></div>
+        <div class="project-name">{{project.name}}</div>
+</div>
+<div class="update-content">
+             {{#each update in (lastUpdate project)}}
+             {{> update_item update=update}}
+             {{/each}}
+</div>
+        </article>
+ </template>
 
 <template name = "project_option">
-    
-    <option value = "{{id}}">{{name}}</option>
-    
+        <option value = "{{project.id}}">{{project.name}}</option>
 </template>
 
 <template name = "update_item">
-    <p>Updated at: {{createdAt}}, text: {{text}}, {{project_id}}</p>    
+        <!--<div class="update-content">-->
+        <!--<div class="update_priority"><div class ="circle"></div></div>-->
+        <div class ="update_date">Updated at: {{formatDate update.createdAt}}</div>
+        <div class ="update_text">{{update.text}}</div>
+        <!--</div>-->
 </template>
