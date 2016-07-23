@@ -18,19 +18,24 @@ Template.body.helpers({
           return Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});}, 
 });
 
-Template.project_item.helpers({
-          lastUpdate (project) {
-          let id = project.id.toString();
-      let update = Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});
-      return Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});}, 
-
-});
-
-Template.update_item.helpers({
+Template.project_item.helpers({      
 
     formatDate (date) {
-         var date = date = moment();
-         return date = date.format('LL');}
+         return moment(date).format('LL');},
+
+    colorCycle (update) {
+        let color = "";
+        let priority = update.priority.toString();
+        switch (priority) {
+            case "1": color = "red";
+                break;
+            case "2": color = "yellow";
+                break;
+            case "3": color = "green";
+                break;};
+        //console.log(color);
+        return color;}
+
 });
 
 Template.body.events({

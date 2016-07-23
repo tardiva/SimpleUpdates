@@ -36,60 +36,67 @@ section {
   background-color: #58878b;
   border-radius: 5px 5px 0 0;
   padding: 3px;
-  margin-bottom: 10px;
 } 
 
 article {
-  padding-bottom: 5px;  
+  padding: 10px 0 10px 0;
 }
 
 article:nth-child(2n) {
   background-color: #e9f1f2
 }
 
-.update_priority, .project-name, .update_date, .update_text{
+.update_priority, .update_content, .update_date, .update_text, .project_name {
   display:inline-block;
 }
 
-.project {
-  padding-top: 3px;
-  width: 100%;
-}
-
 .update_priority {
+  padding-top: 3px;
+  vertical-align: top;
   width: 4%;
+  min-width: 30px;
 }
 
-.project-name {
+.update_content {
+  width: 95%;
+}
+
+.project_name {
   font: 120% verdana;
   color: #58878b;
   margin-bottom: 10px;
-}
-
-.update-content {
-  margin: 5px;
-  padding: 3px;
   width: 100%;
 }
 
 .update_date {
   font-style: italic;
   vertical-align: top;
-  width: 20%;  
+  padding-bottom: 5px;
+  width: 20%;
+  min-width: 100px;  
 }
 
 .update_text {
-  width: 70%;
+  width: 79%;
 }
 
 .circle {
   background-color: grey;
-  border-radius:7px;
-  margin: auto 0px auto 10px;
+  border-radius:9px;
+  border: 2px solid #58878b;
+  margin: auto;
   width: 15px;
   height:15px; 
 }
 
 .red {
-  background-color: red;
+  background-color: #ee4a4a;
+}
+
+.yellow {
+  background-color: #f6d50a;
+}
+
+.green {
+  background-color: #82d64d;
 }

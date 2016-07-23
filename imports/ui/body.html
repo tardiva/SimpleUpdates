@@ -1,74 +1,62 @@
+<!--Body-->
+
 <body>
-<header>
-  <h1>Simple Updates</h1>
-</header>
+    <header>
+        <h1>Simple Updates</h1>
+    </header>
 
-<section class ="projects">
+    <section class ="projects">
   
-    <div class="section-header"><h2>Projects</h2></div>
-    <div class ="section-content">
-        {{#each project in projects}}
-        {{> project_item project = project}}
-                    
-            <!--{{> update_item (lastUpdate project)}}
-            {{#each update in (lastUpdate project)}}
-            {{> update_item update=update}}
-            {{/each}}-->
-                    
-        {{/each}}
-     </div>
-    
-</section>
+        <div class="section-header"><h2>Projects</h2></div>
 
-<section class ="add_update"> 
+        <div class ="section-content">
+            {{#each project in projects}}
+                {{#each update in (lastUpdate project)}}
+                {{> project_item project = project update = update}} 
+                {{/each}}
+            {{/each}}
+        </div>
+    
+    </section>
+
+    <section class ="add_update"> 
                    
-    <div class="section-header"><h2>New update</h2></div>
+        <div class="section-header"><h2>New update</h2></div>
     
-    <form class = "add_update">
-        
-    <select id = "update_project">
-        {{#each project in projects}}
-        {{> project_option project = project}}
-        {{/each}}
-    </select>
+        <form class = "add_update">        
+            <select id = "update_project">
+                {{#each project in projects}}
+                {{> project_option project = project}}
+                {{/each}}
+            </select>
     
-    <select id = "update_priority">
-        <option value = "1">High</option>
-        <option value = "2">Medium</option>
-        <option value = "3">Low</option>
-    </select>
+            <select id = "update_priority">
+                <option value = "1">High</option>
+                <option value = "2">Medium</option>
+                <option value = "3">Low</option>
+            </select>
 
-    <textarea id = "update_text"></textarea> 
+            <textarea id = "update_text"></textarea> 
         
-    <button class = "new_update">Submit</button> 
-          
-    </form>
+            <button class = "new_update">Submit</button> 
+       </form>
 
-</section>  
+    </section>  
 </body>
 
+<!--Templates-->
+
 <template name="project_item">
-        <article>
-<div class="project">
-        <div class="update_priority"><div class ="circle"></div></div>
-        <div class="project-name">{{project.name}}</div>
-</div>
-<div class="update-content">
-             {{#each update in (lastUpdate project)}}
-             {{> update_item update=update}}
-             {{/each}}
-</div>
-        </article>
+    <article>                      
+         <div class="update_priority"><div class ="circle {{colorCycle update}}"></div></div>
+         <div class="update_content"> 
+             <div class="project_name">{{project.name}}</div>
+             <div class ="update_date">Updated at: {{formatDate update.createdAt}}</div>
+             <div class ="update_text">{{update.text}}</div>
+        </div>
+    </article>
  </template>
 
 <template name = "project_option">
-        <option value = "{{project.id}}">{{project.name}}</option>
-</template>
-
-<template name = "update_item">
-        <!--<div class="update-content">-->
-        <!--<div class="update_priority"><div class ="circle"></div></div>-->
-        <div class ="update_date">Updated at: {{formatDate update.createdAt}}</div>
-        <div class ="update_text">{{update.text}}</div>
-        <!--</div>-->
+       <option value = "{{project.id}}">{{project.name}}</option>
 </template>
