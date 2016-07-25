@@ -1,11 +1,28 @@
 /* CSS declarations go here */
-html, body, div, span, section, article, form, h1, h2 { 
+html, body, div, span, section, article, form, h1, h2, ul, li { 
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  list-style-type: none;
+}
+
+h1, h2, article, form, button {
+  font-family: verdana;
+}
+
+h1, .project-name, .button-dd {
+  color: #58878b;
+}
+
+h2, button {
+  color: #fff;
+}
+
+h1, h2, button {
+  font-weight: bold;
 }
 
 header{
@@ -15,14 +32,12 @@ header{
 }
 
 h1 {
-  font: bold 200% verdana;
-  color: #58878b;
+  font-size: 200%;
   margin-bottom: 5px;
 }
 
 h2 {
-  font: bold 140% verdana;
-  color: #ffffff;
+  font-size: 140%;
 }
 
 section {
@@ -35,49 +50,50 @@ section {
 .section-header {
   background-color: #58878b;
   border-radius: 5px 5px 0 0;
-  padding: 3px;
+  padding: 3px 10px;
 } 
 
-article {
-  padding: 10px 0 10px 0;
+article, form {
+  padding: 10px;
 }
 
 article:nth-child(2n) {
-  background-color: #e9f1f2
+  background-color: #e9f1f2;
 }
 
-.update_priority, .update_content, .update_date, .update_text, .project_name {
+.update-priority, .update-content, .update-date, .update-text, .project-name {
   display:inline-block;
 }
 
-.update_priority {
+.update-priority {
+  min-width: 30px;
   padding-top: 3px;
   vertical-align: top;
   width: 4%;
-  min-width: 30px;
 }
 
-.update_content {
+.update-content {
   width: 95%;
 }
 
-.project_name {
-  font: 120% verdana;
-  color: #58878b;
+.project-name {
+  font-size: 120%;
   margin-bottom: 10px;
   width: 100%;
 }
 
-.update_date {
+.update-date {
   font-style: italic;
   vertical-align: top;
   padding-bottom: 5px;
   width: 20%;
-  min-width: 100px;  
+  min-width: 100px;
+  font-size: 80%;  
 }
 
-.update_text {
+.update-text {
   width: 79%;
+  font-size: 80%;
 }
 
 .circle {
@@ -99,4 +115,81 @@ article:nth-child(2n) {
 
 .green {
   background-color: #82d64d;
+}
+
+/*New update form (using flexbox layout)*/
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.wrapper-dd {
+  font-size: 90%;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 3px 3px 3px;
+ }
+
+.add-update-priority {
+  width: 15%;
+    
+}
+
+.add-update-project {
+  width: 20%;
+}
+
+.button-dd, .menu-dd {
+  background-color: #fff;
+}
+
+.button-dd {
+  height: 23px;
+  padding: 2px;
+}
+
+.menu-dd {
+  display: none;
+  position: relative;
+  top: 10px;
+    
+}
+
+.active {
+  display: flex;
+  flex-direction: column;
+  //z-index: 1;
+}
+
+.highlight {
+  background-color: #e9f1f2;
+}
+
+.add-update-text {
+  width: 63%;
+}
+
+#update-text {
+  width: 100%;
+  height: 50px;
+  border: none;
+  margin: 0 3px;
+}
+
+div.new-update-btn {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+button.new-update-btn {
+  margin-top: 3px;
+  background-color: #58878b;
+  border: none;
+  text-align: center;
+  width: 100px;
+  height: 30px;
 }

@@ -4,6 +4,18 @@ import { Updates } from '../api/projects.js';
  
 import './body.html';
 
+
+    class Dropdown {
+
+        constructor (el) {
+
+            this.dd = el;
+            this.btn = el.getElementsByClassName('button-dd').item(0);
+            this.menu = el.getElementsByClassName('menu-dd').item(0);
+            //this.opt = ;
+        }
+};
+
 Template.body.helpers({
 
     projects () {
@@ -18,7 +30,7 @@ Template.body.helpers({
           return Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});}, 
 });
 
-Template.project_item.helpers({      
+Template.projectItem.helpers({      
 
     formatDate (date) {
          return moment(date).format('LL');},
@@ -33,24 +45,73 @@ Template.project_item.helpers({
                 break;
             case "3": color = "green";
                 break;};
-        //console.log(color);
         return color;}
 
 });
 
-Template.body.events({
+    Template.body.events({
 
-    'click .new_update'(event) {
+        'click .button-dd' (event) {     
 
-        event.preventDefault();
-        var projectsList = document.getElementById("update_project");
-        var priorityList = document.getElementById("update_priority");
-  
-        Updates.insert({
-            createdAt: new Date(),
-            text: document.getElementById("update_text").value,
-            project_id: projectsList.options[projectsList.selectedIndex].value,
-            priority: priorityList.options[priorityList.selectedIndex].value });},
+        /*let dd = event.target,
+            menu = dd.parentElement.getElementsByClassName('menu_dd').item(0);
 
-});
+        menu.classList.toggle('active');*/
+
+        let dropdown = new Dropdown(event.target.parentElement);
+        dropdown.menu.classList.toggle('active');
+        },
+
+        /*'mouseout .menu_dd' (event) {
+            
+            let menu = event.currentTarget;
+
+            menu.classList.toggle('active');
+
+            console.log('mouseout menu - ' + menu);
+
+        },*/
+        
+        'mouseover .menu_opt, mouseout .menu-opt' (event) {
+                    
+            let opt = event.target;
+
+            opt.classList.toggle('highlight');
+            //event.stopPropagation();
+            //console.log('menu_opt highlight - it works!');
+        },
+
+        'click .menu_opt' (event) {
+            
+            let opt = event.target,
+                button = opt.parentElement.parentElement.getElementsByClassName('button-dd').item(0);
+            button.setAttribute("value", opt.getAttribute("value"));
+            button.textContent = opt.textContent;            
+       },
+
+
+        'click button.new_update_btn'(event) {
+
+            event.preventDefault();
+
+            let textField = document.getElementById("update-text"),
+                projectsList = document.getElementById("update-project"),
+                priorityList = document.getElementById("update-priority");
+        
+            Updates.insert({
+                createdAt: new Date(),
+                text: textField.value,
+                project_id: projectsList.getAttribute("value"),
+                priority: priorityList.getAttribute("value") });
+
+            textField.value = '';
+            projectsList.setAttribute("value", "0");
+            projectsList.textContent = "Projects";
+            priorityList.setAttribute("value", "0");
+            priorityList.textContent = "Priority";
+        
+            console.log('update!');
+        },
+
+    });
 
