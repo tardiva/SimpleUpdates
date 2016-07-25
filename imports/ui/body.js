@@ -62,7 +62,7 @@ Template.projectItem.helpers({
         dropdown.menu.classList.toggle('active');
         },
 
-        /*'mouseout .menu_dd' (event) {
+        'mouseout .menu-dd' (event) {
             
             let menu = event.currentTarget;
 
@@ -70,9 +70,9 @@ Template.projectItem.helpers({
 
             console.log('mouseout menu - ' + menu);
 
-        },*/
+        },
         
-        'mouseover .menu_opt, mouseout .menu-opt' (event) {
+        'mouseover .menu-opt, mouseout .menu-opt' (event) {
                     
             let opt = event.target;
 
@@ -90,7 +90,7 @@ Template.projectItem.helpers({
        },
 
 
-        'click button.new_update_btn'(event) {
+        'click button.new-update-btn'(event) {
 
             event.preventDefault();
 
