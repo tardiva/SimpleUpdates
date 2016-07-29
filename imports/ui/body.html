@@ -11,9 +11,29 @@
     <div class="section-header"><h2>Projects</h2></div>
     <div class ="section-content">
       {{#each project in projects}}
-        {{#each update in (lastUpdate project)}}
-        {{> projectItem project = project update = update}} 
-        {{/each}}
+        <!--{{#each update in (lastUpdate project)}}
+              
+            {{> projectItem project = project update = update}} 
+          
+        {{/each}}-->
+          {{#if lastUpdate project}}
+              {{#each update in (lastUpdate project)}}
+                {{> projectItem project = project update = update}} 
+              {{/each}}
+        <!--{{> projectItem project = project update = update}}-->
+          {{else}} 
+        
+        <article>                          
+    <div class="update-priority"><div class ="circle"></div></div>
+    <div class="update-content"> 
+      <div class="project-name">{{project.name}}</div>
+      <div class ="update-date"></div>
+      <div class ="update-text">No updates for this project</div>
+    </div>          
+    </article>
+ 
+        {{/if}}
+                
       {{/each}}
     </div>
     
@@ -25,12 +45,14 @@
 
     <form class = "add-update">
 
-      <div class ="add-update-priority wrapper-dd">
+      <div class ="add-update-inputs">
+
+        <div class ="add-update-priority wrapper-dd">
         <div id = "update-priority" class ="button-dd" value ="0">Priority</div>
           <ul class ="menu-dd">
-            <li class="menu-opt" value = "1">High</li>
-            <li class="menu-opt" value = "2">Medium</li>
-            <li class="menu-opt" value = "3">Low</li>
+            <li class="menu-opt" value = "1"> <div class="wrapper-circle"><div class ="circle red"></div></div>High</li>
+            <li class="menu-opt" value = "2"> <div class="wrapper-circle"><div class ="circle yellow"></div></div>Medium</li>
+            <li class="menu-opt" value = "3"> <div class="wrapper-circle"><div class ="circle green"></div></div>Low</li>
           </ul>
       </div>
 
@@ -46,25 +68,11 @@
       <div class ="add-update-text">
         <textarea id = "update-text"></textarea> 
       </div>
-
+    </div>
       <div class ="new-update-btn">
         <button class = "new-update-btn">Submit</button> 
       </div>     
-            <!--<select id = "update_project">
-                {{#each project in projects}}
-                {{> project_option project = project}}
-                {{/each}}
-            </select>
-    
-            <select id = "update_priority">
-                <option value = "1">High</option>
-                <option value = "2">Medium</option>
-                <option value = "3">Low</option>
-            </select>
-
-            <textarea id = "update_text"></textarea> 
-        
-            <button class = "new_update">Submit</button> -->
+           
     </form>
 
   </section>
@@ -74,14 +82,14 @@
 <!--Templates-->
 
 <template name="projectItem">
-  <article>                      
+    <article>                          
     <div class="update-priority"><div class ="circle {{colorCycle update}}"></div></div>
     <div class="update-content"> 
       <div class="project-name">{{project.name}}</div>
       <div class ="update-date">Updated at: {{formatDate update.createdAt}}</div>
       <div class ="update-text">{{update.text}}</div>
-    </div>
-  </article>
+    </div>          
+    </article>
  </template>
 
 <template name = "projectOption">

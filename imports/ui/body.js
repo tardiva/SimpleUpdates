@@ -12,7 +12,7 @@ import './body.html';
             this.dd = el;
             this.btn = el.getElementsByClassName('button-dd').item(0);
             this.menu = el.getElementsByClassName('menu-dd').item(0);
-            //this.opt = ;
+            //this.opts = ;
         }
 };
 
@@ -25,9 +25,15 @@ Template.body.helpers({
            return Updates.find({});},
     
     lastUpdate (project) {
-          let id = project.id.toString();
-          let update = Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});
-          return Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});}, 
+          let id = project.id;
+          let upd = Updates.find({project_id: {$eq: id}});
+          console.log(upd.count() + " " + project.id);
+          if (upd.count() == 0) {
+              return false;}
+          else {
+              return Updates.find({project_id: { $eq: id}}, {sort: {createdAt: -1}, limit: 1});
+          }
+      }, 
 });
 
 Template.projectItem.helpers({      
@@ -37,7 +43,7 @@ Template.projectItem.helpers({
 
     colorCycle (update) {
         let color = "";
-        let priority = update.priority.toString();
+        let priority = update.priority;
         switch (priority) {
             case "1": color = "red";
                 break;
@@ -51,6 +57,14 @@ Template.projectItem.helpers({
 
     Template.body.events({
 
+       /* 'mouseover .wrapper-dd, mouseout .wrapper-dd' (event) {
+        
+        let dropdown = new Dropdown(event.target);
+        dropdown.menu.classList.toggle('active');
+        console.log('active!')
+
+    },*/
+        
         'click .button-dd' (event) {     
 
         /*let dd = event.target,
@@ -60,9 +74,10 @@ Template.projectItem.helpers({
 
         let dropdown = new Dropdown(event.target.parentElement);
         dropdown.menu.classList.toggle('active');
+        console.log('active!')
         },
 
-        'mouseout .menu-dd' (event) {
+       /* 'mouseout .menu-dd' (event) {
             
             let menu = event.currentTarget;
 
@@ -70,7 +85,7 @@ Template.projectItem.helpers({
 
             console.log('mouseout menu - ' + menu);
 
-        },
+        },*/
         
         'mouseover .menu-opt, mouseout .menu-opt' (event) {
                     
@@ -78,15 +93,17 @@ Template.projectItem.helpers({
 
             opt.classList.toggle('highlight');
             //event.stopPropagation();
-            //console.log('menu_opt highlight - it works!');
+            console.log('menu_opt highlight - it works!');
         },
 
-        'click .menu_opt' (event) {
+        'click .menu-opt' (event) {
             
             let opt = event.target,
                 button = opt.parentElement.parentElement.getElementsByClassName('button-dd').item(0);
             button.setAttribute("value", opt.getAttribute("value"));
-            button.textContent = opt.textContent;            
+            button.textContent = opt.textContent;  
+            
+            console.log(opt);
        },
 
 
