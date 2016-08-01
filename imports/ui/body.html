@@ -10,23 +10,27 @@
 
     <div class="section-header"><h2>Projects</h2></div>
     <div class ="section-content">
-      {{#each project in projects}}
+      <!--{{#each project in projects}}-->
         <!--{{#each update in (lastUpdate project)}}
               
             {{> projectItem project = project update = update}} 
           
         {{/each}}-->
-          {{#if lastUpdate project}}
+         <!-- {{#if lastUpdate project}}
               {{#each update in (lastUpdate project)}}
                 {{> projectItem project = project update = update}} 
-              {{/each}}
+              {{/each}}-->
         <!--{{> projectItem project = project update = update}}-->
-          {{else}} 
+          <!--{{else}} -->
         
-        <article>                          
+        
+        
+        <!--<article>                          
     <div class="update-priority"><div class ="circle"></div></div>
     <div class="update-content"> 
-      <div class="project-name">{{project.name}}</div>
+      <div class="project-name">
+          {{project.name}}<button class = "delete-btn">Delete Project</button>
+        </div>
       <div class ="update-date"></div>
       <div class ="update-text">No updates for this project</div>
     </div>          
@@ -34,7 +38,20 @@
  
         {{/if}}
                 
+      {{/each}}-->
+        
+      {{#each project in projects}}
+        
+        {{#if (hasUpdates project)}}
+           {{> projectItem project = project update = (lastUpdate project)}}
+        {{else}}
+           {{> projectItem project = project update = noUpdates}}
+        {{/if}}
+        
+        
       {{/each}}
+        
+        
     </div>
     
   </section>
@@ -76,6 +93,14 @@
     </form>
 
   </section>
+    
+    <section class = "add-project">
+        <div class="section-header"><h2>New Project</h2></div>
+        <form class = "add-project">
+            <input id = "add-project-name" class = "new-project-name" type = "text">
+            <button class = "new-project-btn">Submit</button> 
+        </form>
+    </section>
 
 </body>
 
@@ -85,7 +110,9 @@
     <article>                          
     <div class="update-priority"><div class ="circle {{colorCycle update}}"></div></div>
     <div class="update-content"> 
-      <div class="project-name">{{project.name}}</div>
+        <div class="project-name">
+            {{project.name}}<button class = "delete-btn">Delete Project</button>
+        </div>
       <div class ="update-date">Updated at: {{formatDate update.createdAt}}</div>
       <div class ="update-text">{{update.text}}</div>
     </div>          

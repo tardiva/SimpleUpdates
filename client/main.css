@@ -130,6 +130,11 @@ form, .wrapper-dd {
   flex-direction: column;
 }
 
+.add-project {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .add-update-inputs {
   justify-content: space-between;
 }
@@ -226,7 +231,7 @@ div.new-update-btn {
   width: 100%;
 }
 
-button.new-update-btn {
+button.new-update-btn, button.new-project-btn {
   background-color: #58878b;
   border: none;
   cursor: pointer;
@@ -234,4 +239,8 @@ button.new-update-btn {
   margin-top: 5px;
   text-align: center;
   width: 100px;
+}
+
+.new-project-name {
+ width: 70%;    
 }
