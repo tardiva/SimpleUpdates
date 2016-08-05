@@ -1,0 +1,25 @@
+<template name="signup">
+    <form>
+    <input type="text" name="firstName" placeholder="First name">
+    <input type="text" name="lastName" placeholder="Last name"> 
+    <input type="email" name="signupEmail" placeholder="Email">
+    <input type="password" name="signupPassword" placeholder="Password">
+      <label><input type="checkbox" id="isAdmin" name = "isAdmin"> Administrator </label>
+      <input type="submit" value="Signup">
+  </form>
+</template>
+
+<template name="login">
+  <h2>Log in</h2>
+  <form>
+    <input type="email" name="loginEmail" placeholder="Email">
+    <input type="password" name="loginPassword" placeholder="Password">
+    <input type="submit" value="Login">
+  </form>
+</template>
+
+<template name="settings">
+  <p>You're logged in, {{user.firstName}}!</p>
+    <p>{{isAdmin}}</p>
+  <p><a href="#" class="logout">Logout</a></p>
+</template>

@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating';
-import { Projects } from '../api/projects.js';
-import { Updates } from '../api/projects.js';
+import { Projects, Updates } from '../api/projects.js';
  
 import './body.html';
+import './accounts.js';
 
 
 class Dropdown {
@@ -24,6 +24,13 @@ function getID () {
         else {return (parseInt(lastProject.id) + 1)};
 };
 
+Template.body.onCreated(function bodyOnCreated() {
+
+  //this.state = new ReactiveDict();
+
+  Meteor.subscribe('userRole');
+
+});
 
 Template.body.helpers({
 
@@ -52,7 +59,8 @@ Template.body.helpers({
           text: "no updates for this project"
         };
         return update;
-    }
+    },
+        
 });
 
 Template.projectItem.helpers({      
@@ -147,15 +155,7 @@ Template.body.events({
 
 });
 
-/*Meteor.methods({
-    
-    'removeProject': function (id) {
-        Projects.remove({id: id});
-    },
-    
-    'removeUpdates': function (projectId) {
-       Updates.remove({project_id: projectId});
-    },
-        
-});
-*/
+
+
+
+
