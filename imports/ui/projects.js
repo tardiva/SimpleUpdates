@@ -3,6 +3,14 @@ import { Projects, Updates } from '../api/projects.js';
 
 import './projects.html';
 
+function getID () {
+    
+    let lastProject = Projects.find({}, {sort: {id: -1}, limit: 1}).fetch()[0];
+            
+    if (lastProject == undefined) {return 1}
+        else {return (parseInt(lastProject.id) + 1)};
+}
+
 Template.projects_templ.events({
                    
     'submit form.add-project' (event) {

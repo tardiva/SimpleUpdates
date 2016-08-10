@@ -86,5 +86,10 @@ Template.login.events({
     let password = event.target.loginPassword.value;
     Meteor.loginWithPassword(email, password);
     
-  }
+  },
+    
+    'click #sign-up-link' (event) {
+      event.preventDefault();
+      FlowRouter.go("/signup");
+    }
 });

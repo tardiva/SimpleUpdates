@@ -123,5 +123,17 @@ Template.updates_templ.events({
         
         updateForm.clear();
         
-    }
+    },
+    
+    'click .menu-opt' (event) {
+            
+        let opt = event.target.closest('.menu-opt'),
+            button = opt.closest('.dropdown').getElementsByClassName('dropdown-toggle').item(0);
+        
+        console.log(opt);
+        console.log(opt.getAttribute("value"));
+        
+        button.innerHTML = opt.innerHTML;
+        button.setAttribute("value", opt.getAttribute("value"));
+    }, 
 });

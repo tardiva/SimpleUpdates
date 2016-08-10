@@ -29,4 +29,5 @@ Template.navigation.events({
       event.preventDefault();
       FlowRouter.go("/users");
     },
+        
 });
