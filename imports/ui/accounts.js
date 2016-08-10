@@ -59,6 +59,7 @@ Template.signup.events({
             
     let email = event.target.signupEmail.value,
         password = event.target.signupPassword.value,
+        tenantId = 1,
         isAdmin = event.target.isAdmin.checked,
         firstName = event.target.firstName.value,
         lastName = event.target.lastName.value;
@@ -72,7 +73,8 @@ Template.signup.events({
         firstName: firstName,
         lastName: lastName
     },   
-    isAdmin: isAdmin    
+    isAdmin: isAdmin,
+    tenantId: tenantId    
     });
   }
 });

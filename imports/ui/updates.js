@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Projects, Updates } from '../api/projects.js';
+import { Projects, Updates, Tenants } from '../api/projects.js';
 
 import './updates.html';
 
@@ -31,7 +31,6 @@ class UpdateForm {
     }
 };
 
-//let updateForm = new UpdateForm();
 
 Template.updates_templ.helpers({
     
@@ -78,7 +77,7 @@ Template.project_item.helpers({
                 break;};
         return color;
     },
-    
+        
 });
 
 Template.project_item.onRendered(
@@ -99,8 +98,7 @@ function() {
                 target.textContent = result;
                };
         });
-    
-}
+}   
     
 );
 
@@ -114,7 +112,7 @@ Template.updates_templ.events({
         
         updateForm.submit();
         updateForm.clear();
-        
+                
     },
     
     'click form.new-update .btn-cancel' (event) {

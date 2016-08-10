@@ -20,7 +20,11 @@ Template.body.onCreated(function bodyOnCreated() {
  
   Meteor.subscribe('userRole');
 
-});
+  Meteor.subscribe('updates');
+
+  Meteor.subscribe('projects');
+
+  });
 
 Template.body.helpers({
 
