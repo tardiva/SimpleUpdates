@@ -2,6 +2,13 @@ import { Template } from 'meteor/templating';
 
 import './accounts.html';
 
+Accounts.onLogin(function() {
+  var path = FlowRouter.current().path;
+  if(path === "/"){
+    FlowRouter.go("/home");
+  }
+});
+
 Template.registerHelper(
     
     'hasUsers',()  =>{
@@ -18,7 +25,9 @@ Template.registerHelper(
     let user = Meteor.user();
     user.email = user.emails[0].address;
     user.firstName = user.profile.firstName;
+    user.lastName = user.profile.lastName;     
     user.isAdmin = user.isAdmin;
+    user.fullName = user.firstName + ' ' + user.lastName;
         
     return user;
     }
@@ -76,25 +85,6 @@ Template.login.events({
     let email = event.target.loginEmail.value;
     let password = event.target.loginPassword.value;
     Meteor.loginWithPassword(email, password);
+    
   }
 });
-
-Template.settings.events({
-    
-    'click .logout' (event) {
-        
-      event.preventDefault();
-      Meteor.logout();
-    }
-  });
-
-
-/*if(Meteor.isClient){
-    
-    Meteor.methods({
-        
-       'getUserRole': function() {
-        console.log('its a stub');
-        }
-    });
-}*/

@@ -1,0 +1,85 @@
+<template name="updates_templ">
+    
+  
+  <section class = "new-update col-sm-11 panel panel-custom">
+      <!--<div class="panel panel-custom">-->
+      <div class="panel-body">
+      <form id = "new-update-form" class = "new-update">
+      
+      <div class = "col-md-2">
+        <div class="dropdown">
+          <button id = "new-update-status" class="btn btn-default dropdown-toggle btn-sm" value ="0" type="button" data-toggle="dropdown">Status
+              <span class="pull-right"><span class="caret"></span></span></button>
+          <ul class="dropdown-menu">
+            <li class="menu-opt" value = "1">
+                <a href="#"><div class ="circle red"></div><span>High</span></a></li>
+            <li class="menu-opt" value = "2">
+                <a href="#"><div class ="circle yellow"></div><span>Medium</span></a></li>
+            <li class="menu-opt" value = "3">
+                <a href="#"><div class ="circle green"></div><span>Low</span></a></li>
+          </ul>
+        </div>
+      </div>
+          
+      <div class = "col-md-2">
+        <div class="dropdown">
+          <button id = "new-update-project" class="btn btn-default dropdown-toggle btn-sm" value ="0" type="button" data-toggle="dropdown">Select Project
+              <span class="pull-right"><span class="caret"></span></span></button>
+          <ul class="dropdown-menu">
+              {{#each project in projects}}
+              {{> project_option project = project}}
+              {{/each}}
+          </ul>
+        </div>
+      </div>
+       
+      <div class = "col-md-6">    
+        <textarea id = "new-update-text" class="form-control input-sm" rows = "1"></textarea>
+      </div>
+       
+      <div class = "col-md-1">    
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+      </div>
+       
+          <div class = "col-md-1">    
+        <button type="button" class="btn btn-default btn-cancel btn-sm">Cancel</button>
+      </div>
+        
+      </form>
+     </div>
+          <!--</div>-->
+  </section>
+    
+    
+  <section class ="updates col-sm-12">
+                    
+      {{#each project in projects}}
+        
+        {{#if (hasUpdates project)}}
+           {{> project_item project = project update = (lastUpdate project)}}
+        {{else}}
+           {{> project_item project = project update = noUpdates}}
+        {{/if}}
+               
+      {{/each}}
+         
+  </section>
+</template>
+
+<template name = "project_option">
+  <li class="menu-opt" value ={{project.id}}><a href="#">{{project.name}}</a></li>
+</template>
+
+<template name="project_item">
+  <article class = "last-update col-sm-10">
+        
+    <div class = "last-update-header col-sm-10">
+        <div class = "circle-wrapper"><div class ="circle {{colorCycle update}}"></div></div>
+        <div class="project-name">{{project.name}}</div>
+    </div>
+     
+      <div class ="update-date col-sm-10"><span class = "updated-by"></span> on <span class = "updated-at">{{formatDate update.createdAt}}</span></div>
+      <div class ="update-text col-sm-10">{{update.text}}</div>
+              
+  </article>
+</template>

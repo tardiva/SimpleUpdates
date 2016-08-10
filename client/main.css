@@ -1,5 +1,164 @@
+body { 
+    padding-top: 100px;
+}
+
+.navbar-custom {
+    background-color: #6098c7;    
+}
+
+.navbar-custom li > a:hover, .navbar-custom li > a:focus {
+    background-color: #96b4ce;
+}
+
+.navbar-custom .open > a , .navbar-custom .open > a:hover, .navbar-custom .open > a:focus  {
+    background-color: #96b4ce;
+}
+
+.navbar-custom a {
+    color: #fff;
+}
+
+.avatar {
+    margin: 0 5px;
+}
+
+.panel-custom {
+    background-color: #efeff2;
+}
+
+.panel-custom button.dropdown-toggle {
+    
+    width: 125px;
+    text-align: left;
+}
+
+section.new-update {
+    margin-bottom: 50px;
+}
+
+.last-update, .last-update-header {
+    margin-bottom: 15px;
+}
+
+.circle {
+  background-color: #9f9c9c;
+  border-radius:9px;
+  /*border: 2px solid #58878b;*/
+  /*margin: auto;*/
+  width: 15px;
+  height:15px; 
+  margin-right: 10px;
+  vertical-align: middle;
+  display: inline-block;
+  
+}
+
+.circle-wrapper, .project-name {
+   display: inline-block; 
+   vertical-align: middle;
+    
+}
+
+.project-name {
+    padding-top: 2px;
+    font-size: 140%;
+    font-weight: 500;
+}
+
+.red {
+  background-color: #ee4a4a;
+}
+
+.yellow {
+  background-color: #f6d50a;
+}
+
+.green {
+  background-color: #82d64d;
+}
+
+.update-date, .update-text {
+    padding-left: 45px;
+    margin-bottom: 8px;
+}
+
+.updated-by, .updated-at {
+    font-weight: 600;
+}
+
+.btn-cancel {
+    color: #fff;
+    background-color: #9f9c9c;
+    border-color:  #7e7b7b;
+}
+
+.btn-cancel:hover, .btn-cancel:focus, .btn-cancel.focus, .btn-cancel:active, .btn-cancel.active {
+    color: #fff;
+    background-color: #7e7b7b;
+    border-color: #605f5f;
+}
+
+.menu-opt > a > div,  .menu-opt > a > span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*Login*/
+
+.login-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -150px;    
+}
+
+.panel-login {
+    padding: 40px 40px 0 40px;
+    width: 300px;    
+}
+
+.login-brand {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+[name = loginEmail] {
+    
+    margin-bottom: 5px;
+}
+
+[name = loginPassword] {
+    
+    margin-bottom: 40px;
+}
+
+[name = loginBtn] {
+    
+    margin-bottom: 15px;
+}
+
+#sign-up-link {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+
+
+/*.menu-opt > a {
+    vertical-align: middle;
+}*/
+
+/*.panel-custom button.dropdown-toggle .caret {
+    position: absolute;
+    left:80%;
+    top: 45%;
+}*/
+
 /* CSS declarations go here */
-html, body, div, span, section, article, form, h1, h2, ul, li { 
+/*html, body, div, span, section, article, form, h1, h2, ul, li { 
   margin: 0;
   padding: 0;
   border: 0;
@@ -122,7 +281,7 @@ article:nth-child(2n) {
 
 /*New update form (using flexbox layout)*/
 
-form, .add-update-inputs, .wrapper-dd, .menu-opt, .add-update-text, div.new-update-btn {
+/*form, .add-update-inputs, .wrapper-dd, .menu-opt, .add-update-text, div.new-update-btn {
   display: flex;
 }
 
@@ -243,4 +402,4 @@ button.new-update-btn, button.new-project-btn {
 
 .new-project-name {
  width: 70%;    
-}
+}*/

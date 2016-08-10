@@ -1,0 +1,31 @@
+<template name = "navigation">
+<nav class = "navbar navbar-custom navbar-fixed-top"> 
+   
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Simple Updates</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active updates-link"><a href="#">Updates</a></li>
+        <li class = "dropdown"><a class = "dropdown-toggle" data-toggle = "dropdown" href="#">Administration<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class = "projects-link">Projects</a></li>
+            <li><a href="#" class = "users-link">Users</a></li>
+          </ul>
+        </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+      <li class = "dropdown">
+        <a class = "dropdown-toggle" data-toggle = "dropdown" href="#">{{getUserInfo.fullName}}<span class="glyphicon glyphicon-user avatar"></span>
+          <span class="caret"></span>
+        </a>
+       <ul class="dropdown-menu">
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#" class="logout">Logout</a></li>
+          </ul>     
+      </li>
+      
+    </ul>
+    </div>
+  </nav>
+</template>

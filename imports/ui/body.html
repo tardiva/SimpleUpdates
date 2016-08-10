@@ -1,118 +1,20 @@
 <!--Body-->
 
 <body>
-
-    {{#if currentUser}}
-    {{> settings user = getUserInfo}}
-  <header>
-    <h1>Simple Updates</h1>
-  </header>
-
-  <section class ="projects">
-
-    <div class="section-header"><h2>Projects</h2></div>
-    <div class ="section-content">
-              
-      {{#each project in projects}}
-        
-        {{#if (hasUpdates project)}}
-           {{> projectItem project = project update = (lastUpdate project)}}
-        {{else}}
-           {{> projectItem project = project update = noUpdates}}
-        {{/if}}
-               
-      {{/each}}
-        
-        
-    </div>
     
-  </section>
-   
-  <section class ="add-update">
+   {{> app_layout}}  
 
-    <div class="section-header"><h2>New update</h2></div>
-
-    <form class = "add-update">
-
-      <div class ="add-update-inputs">
-
-        <div class ="add-update-priority wrapper-dd">
-        <div id = "update-priority" class ="button-dd" value ="0">Priority</div>
-          <ul class ="menu-dd">
-            <li class="menu-opt" value = "1"> <div class="wrapper-circle"><div class ="circle red"></div></div>High</li>
-            <li class="menu-opt" value = "2"> <div class="wrapper-circle"><div class ="circle yellow"></div></div>Medium</li>
-            <li class="menu-opt" value = "3"> <div class="wrapper-circle"><div class ="circle green"></div></div>Low</li>
-          </ul>
-      </div>
-
-      <div class= "add-update-project wrapper-dd">
-        <div id = "update-project" class ="button-dd" value ="0">Project</div>
-          <ul class ="menu-dd">
-            {{#each project in projects}}
-              {{> projectOption project = project}}
-            {{/each}}
-          </ul>
-      </div> 
-
-      <div class ="add-update-text">
-        <textarea id = "update-text"></textarea> 
-      </div>
-    </div>
-      <div class ="new-update-btn">
-        <button class = "new-update-btn">Submit</button> 
-      </div>     
-           
-    </form>
-
-  </section>
-    
-    <!--{{#if isAdmin}}-->
-    {{#if getUserInfo.isAdmin}}
-    
-    <section class = "add-project">
-        <div class="section-header"><h2>New Project</h2></div>
-        <form class = "add-project">
-            <input id = "add-project-name" class = "new-project-name" type = "text">
-            <button class = "new-project-btn">Submit</button> 
-        </form>
-    </section>
-    
-    <section class = "add-user">
+<!--<section class = "add-user">
         <div class="section-header"><h2>New User</h2></div>
           {{> signup}} 
     </section>
-    {{/if}}
-    
-    {{else}}
-       {{#if hasUsers}}
-       {{> login}}
-       {{else}}
-       {{> signup}}
-       {{/if}}
-    {{/if}}
+    {{/if}}-->
 
 </body>
 
 <!--Templates-->
 
-<template name="projectItem">
-    <article>                          
-    <div class="update-priority"><div class ="circle {{colorCycle update}}"></div></div>
-    <div class="update-content"> 
-        <div class="project-name">
-            {{project.name}}
-            <!--{{#if isAdmin}}-->
-            {{#if getUserInfo.isAdmin}}
-            <button class = "delete-btn">Delete Project</button>
-            <button class = "edit-btn">Edit Project</button>
-            {{/if}}
-        </div>
-      <div class ="update-date">Updated at: {{formatDate update.createdAt}}</div>
-      <div class ="update-text">{{update.text}}</div>
-    </div>          
-    </article>
- </template>
-
-<template name = "projectOption">
-  <li class="menu-opt" value ={{project.id}}>{{project.name}}</li>
+<template name = "app_layout">
+    {{> Template.dynamic template = nav}}
+    {{> Template.dynamic template = main}}
 </template>

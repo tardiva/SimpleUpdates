@@ -10,16 +10,21 @@
 </template>
 
 <template name="login">
-  <h2>Log in</h2>
-  <form>
-    <input type="email" name="loginEmail" placeholder="Email">
-    <input type="password" name="loginPassword" placeholder="Password">
-    <input type="submit" value="Login">
-  </form>
-</template>
-
-<template name="settings">
-  <p>You're logged in, {{user.firstName}}!</p>
-    <p>{{isAdmin}}</p>
-  <p><a href="#" class="logout">Logout</a></p>
+  
+    <div class = "login-wrapper">
+    
+    <h2 class = "login-brand">Simple Updates</h2>
+  
+    <div class="panel panel-default panel-login">
+    
+    <form>
+    <input class = "form-control" type="email" name="loginEmail" placeholder="Email">
+    <input class = "form-control" type="password" name="loginPassword" placeholder="Password">
+    <input class = "form-control btn btn-primary" type="submit" name = "loginBtn" value="Login">
+    
+    <a id = "sign-up-link" href = "#">Sign up</a>
+    
+    </form>
+    </div>
+    </div>
 </template>
