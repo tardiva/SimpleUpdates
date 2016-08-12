@@ -11,11 +11,11 @@ Accounts.onLogin(function() {
 
 Template.registerHelper(
     
-    'hasUsers',()  =>{
+    /*'hasUsers',()  =>{
     
     if (Meteor.users.find({}).count() > 0) {return true}
         else {return false};
-    }
+    }*/
 );
 
 Template.registerHelper(
@@ -59,7 +59,7 @@ Template.signup.events({
             
     let email = event.target.signupEmail.value,
         password = event.target.signupPassword.value,
-        tenantId = 1,
+        tenantId = 2,
         isAdmin = event.target.isAdmin.checked,
         firstName = event.target.firstName.value,
         lastName = event.target.lastName.value;
@@ -76,6 +76,7 @@ Template.signup.events({
     isAdmin: isAdmin,
     tenantId: tenantId    
     });
+    
   }
 });
 

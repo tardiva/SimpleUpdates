@@ -10,21 +10,26 @@
 </template>
 
 <template name="login">
-  
-    <div class = "login-wrapper">
     
+  <div class = "login-wrapper">
     <h2 class = "login-brand">Simple Updates</h2>
-  
+      
     <div class="panel panel-default panel-login">
-    
-    <form>
-    <input class = "form-control" type="email" name="loginEmail" placeholder="Email">
-    <input class = "form-control" type="password" name="loginPassword" placeholder="Password">
-    <input class = "form-control btn btn-primary" type="submit" name = "loginBtn" value="Login">
-    
-    <a id = "sign-up-link" href = "#">Sign up</a>
-    
-    </form>
+      <form>
+        <div class = "input-group email">
+            <span class="input-group-addon"><span class= "glyphicon glyphicon-envelope"></span></span>
+        <input class = "form-control" type="email" name="loginEmail" placeholder="Email">
+        </div>
+          
+        <div class = "input-group password"> 
+            <span class="input-group-addon"><span class = "glyphicon glyphicon-asterisk"></span></span>    
+        <input class = "form-control" type="password" name="loginPassword" placeholder="Password">          
+        </div>   
+          
+        <input class = "form-control btn btn-primary" type="submit" name = "loginBtn" value="Login">
+        <a id = "sign-up-link" href = "#">Sign up</a>
+      </form>
     </div>
-    </div>
+  </div>
+    
 </template>

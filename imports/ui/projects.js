@@ -21,7 +21,7 @@ Template.projects_templ.events({
         
         Meteor.call('addProject', name, function (error, result) {
             
-            if (error) {alert('You are not authorized')}
+            if (error) {alert(error.reason)}
                 else if (result) {alert(`project ${name} has been created`)}
         });
                         

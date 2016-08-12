@@ -24,10 +24,37 @@ class UpdateForm {
     clear () {
         
         this.textField.value = '';
+        this.textField.style.height = '30px'
         this.projectsList.setAttribute("value", "0");
         this.projectsList.textContent = "Select Project";
         this.priorityList.setAttribute("value", "0");
         this.priorityList.textContent = "Status";
+    }
+    
+    validate () {
+        
+        let isValid = true;
+        
+        if (this.priorityList.value ==='0') {
+                this.priorityList.closest('.form-group').classList.add('has-error');
+                isValid = false;
+                }
+            else {this.priorityList.closest('.form-group').classList.remove('has-error')};
+        
+        if (this.projectsList.value ==='0') {
+                this.projectsList.closest('.form-group').classList.add('has-error');
+                isValid = false;
+                }
+            else {this.projectsList.closest('.form-group').classList.remove('has-error')};
+                                             
+        if (this.textField.value === null || this.textField.value === '') {
+                this.textField.closest('.form-group').classList.add('has-error');
+                isValid = false;
+                }
+            else {this.textField.closest('.form-group').classList.remove('has-error')};
+        
+        return isValid;
+        
     }
 };
 
@@ -48,15 +75,6 @@ Template.updates_templ.helpers({
           
       }, 
     
-    noUpdates () {
-        update = {
-          createdAt: "",
-          priority: "",
-          text: "no updates for this project"
-        };
-        return update;
-    },
-        
 });
 
 Template.project_item.helpers({      
@@ -94,7 +112,6 @@ function() {
                 //some error message should be shown here. or just leave the span empty
                };
               if (result) {
-                console.log(result);
                 target.textContent = result;
                };
         });
@@ -110,8 +127,10 @@ Template.updates_templ.events({
         
         let updateForm = new UpdateForm();
         
+        if (updateForm.validate()){
         updateForm.submit();
         updateForm.clear();
+        }
                 
     },
     
@@ -133,5 +152,15 @@ Template.updates_templ.events({
         
         button.innerHTML = opt.innerHTML;
         button.setAttribute("value", opt.getAttribute("value"));
-    }, 
+    },
+    
+    'keyup textarea' (event) {
+        
+        let el = event.target;
+        
+        el.style.height = el.scrollHeight + 'px';
+        
+        console.log(el.clientHeight +' '+ el.scrollHeight);
+        
+    }
 });

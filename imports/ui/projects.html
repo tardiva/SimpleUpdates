@@ -1,11 +1,20 @@
 <template name = "projects_templ">
     
-    <section class = "add-project">
-        <div class="section-header"><h2>New Project</h2></div>
-        <form class = "add-project">
+  <section class = "add-project col-sm-11 panel panel-custom">
+    <div class="section-header"><h2>New Project</h2></div>
+    <div class="panel-body">
+      <form id = "new-project-form" class = "add-project">
+          <div class = "col-md-5"> 
             <input id = "add-project-name" class = "new-project-name" type = "text">
-            <button class = "new-project-btn">Submit</button> 
-        </form>
-    </section>
+          </div>
+            <div class = "col-md-1">    
+              <button type="submit" class="new-project-btn btn btn-primary btn-sm">Submit</button>
+            </div>
+            <div class = "col-md-1">    
+              <button type="button" class="btn btn-default btn-cancel btn-sm">Cancel</button>
+            </div>
+      </form>
+    </div>
+  </section>
     
 </template>
