@@ -3,7 +3,7 @@ FlowRouter.route( '/', {
     action () {
     BlazeLayout.render( 'app_layout', { main: 'login'} );    
     },
-  });
+});
 
 FlowRouter.route( '/home', {
     name: 'home',
@@ -12,7 +12,7 @@ FlowRouter.route( '/home', {
     BlazeLayout.render( 'app_layout', { nav: 'navigation', main: 'updates_templ'} );    
     }
   },
-  });
+});
 
 FlowRouter.route( '/projects', {
     name: 'projects',
@@ -21,7 +21,7 @@ FlowRouter.route( '/projects', {
     BlazeLayout.render( 'app_layout', { nav: 'navigation', main: 'projects_templ'} );    
     }
   },
-  });
+});
 
 FlowRouter.route( '/users', {
     name: 'users',
@@ -30,11 +30,11 @@ FlowRouter.route( '/users', {
     BlazeLayout.render( 'app_layout', { nav: 'navigation', main: 'signup'} );    
     }
   },
-  });
+});
 
 FlowRouter.route( '/signup', {
     name: 'signup',
     action () {
     BlazeLayout.render( 'app_layout', { main: 'signup'} );    
      },
-  });
+});

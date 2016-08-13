@@ -7,7 +7,12 @@ function getID () {
             
     if (lastProject == undefined) {return 1}
         else {return (parseInt(lastProject.id) + 1)};
-}
+};
+
+function getUsersTenant () {
+        
+       return Meteor.users.findOne({_id: {$eq: this.userId}}).tenantId; 
+};
 
 Meteor.startup(() => {
  
@@ -27,22 +32,25 @@ Accounts.onCreateUser(
 Meteor.methods({
             
     'addProject' : function (name) {
-        
+                
         if (!this.userId || !Meteor.user().isAdmin) {
-            throw new Meteor.Error('not-authorized');
+            throw new Meteor.Error('not-authorized', 'you are not authorized');
          } 
         
+        try {
         Projects.insert({
             id: getID(),
-            tenantId: 1,
+            tenantId: Meteor.users.findOne({_id: {$eq: this.userId}}).tenantId,
             name: name
-        });
+            });
         return true;
+        }
+        catch (error) {throw new Meteor.Error('not created','new record was not created')}
     },
     
     'addUpdate': function (text, project, priority){
         
-         if (! this.userId) {
+         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
          } 
         
@@ -82,10 +90,16 @@ Meteor.methods({
          let profile = Meteor.users.findOne({_id: {$eq: id.toString()}}).profile;
                 
          return (profile.firstName + ' ' + profile.lastName);
-    }
+    },
+    
 });
 
-Meteor.publish('userRole', function() {
+
+Meteor.publish('userRole', function() {     
+      
+         if (!this.userId) {
+            return this.ready();
+         }
     
          const selector = {_id: {$eq: this.userId}};
          const options = {fields: {isAdmin: 1}};
@@ -95,14 +109,30 @@ Meteor.publish('userRole', function() {
 
 Meteor.publish('projects', function() {
     
-         const selector = {tenantId: {$eq: 1}};
-        
-         return Projects.find(selector);
-})
-
-Meteor.publish('updates', function() {
+         if (!this.userId) {
+            return this.ready();
+         }
     
-         const selector = {};
+         let usersTenant = Meteor.users.findOne({_id: {$eq: this.userId}}).tenantId;
+             //Meteor.user().tenantId;
+         let selector = {tenantId: {$eq: usersTenant}};
+                 
+         return  Projects.find(selector);
+});
+
+Meteor.publish('updates', function() { 
+    
+         if (!this.userId) {
+            return this.ready();
+         }
+    
+         let usersTenant = Meteor.users.findOne({_id: {$eq: this.userId}}).tenantId; 
+             
+         let availableProjects = Projects.find({tenantId: {$eq: usersTenant}}).map(function(project) {
+             return project.id;
+         });
+         let selector = {project_id: {$in: availableProjects}};
         
-         return Updates.find(selector);
-})
+         return Updates.find({});
+});
+

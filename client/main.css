@@ -28,8 +28,12 @@ body {
 
 .panel-custom button.dropdown-toggle {
     
-    width: 125px;
+    width: 100%;
     text-align: left;
+}
+
+.panel-custom .form-control,  .panel-custom .btn {
+    height: 30px;
 }
 
 section.new-update {
@@ -39,6 +43,14 @@ section.new-update {
 .last-update, .last-update-header {
     margin-bottom: 15px;
 }
+
+.dropdown button{
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+.dropdown a {
+text-decoration: none}
 
 .circle {
   background-color: #9f9c9c;
@@ -59,12 +71,6 @@ section.new-update {
     
 }
 
-.project-name {
-    padding-top: 2px;
-    font-size: 140%;
-    font-weight: 500;
-}
-
 .red {
   background-color: #ee4a4a;
 }
@@ -75,6 +81,12 @@ section.new-update {
 
 .green {
   background-color: #82d64d;
+}
+
+.project-name {
+    padding-top: 2px;
+    font-size: 140%;
+    font-weight: 500;
 }
 
 .update-date, .update-text {
@@ -103,6 +115,16 @@ section.new-update {
     vertical-align: middle;
 }
 
+#new-update-text {
+    height: 30px;
+    overflow: hidden;
+    resize: none;
+}
+
+#add-project-name {
+    width: 100%;
+}
+
 /*Login*/
 
 .login-wrapper {
@@ -123,14 +145,18 @@ section.new-update {
     margin-bottom: 40px;
 }
 
-[name = loginEmail] {
+.email {
     
     margin-bottom: 5px;
 }
 
-[name = loginPassword] {
+.password {
     
     margin-bottom: 40px;
+}
+
+.input-group-addon {
+    color: grey;
 }
 
 [name = loginBtn] {
