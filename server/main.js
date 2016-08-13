@@ -133,6 +133,6 @@ Meteor.publish('updates', function() {
          });
          let selector = {project_id: {$in: availableProjects}};
         
-         return Updates.find({});
+         return Updates.find(selector);
 });
 
